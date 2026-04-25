@@ -6,15 +6,19 @@ import { SignupLoginCard } from './components/SignupLoginCard'
 
 function App() {
 
-  // const getTwoRandomPokemon = (pokemon1, pokemon2) => {
-    
-  // }
+  const getTwoRandomPokemon = (allPokemon) => {
+    let pokemon1 = Math.floor(Math.random() * allPokemon.length)
+    let pokemon2 = Math.floor(Math.random() * allPokemon.length)
+    let poke1data = allPokemon[pokemon1]
+    let poke2data = allPokemon[pokemon2]
+    console.log(poke1data, poke2data)
+  }
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
     .then(res => res.json())
     .then((data) => {
-      // getTwoRandomPokemon(pokemon1, pokemon2)
+      getTwoRandomPokemon(data.results)
       console.log(data)
     })
   }, [])

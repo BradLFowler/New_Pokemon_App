@@ -1,25 +1,42 @@
 import { useEffect, useState } from "react"
-import { addUser } from "../Store/features/slices/usersSlice"
-import { useAppSelector } from "../Store/store"
-import { useAppDispatch } from "../Store/store"
+import { addUser } from "../features/usersSlice"
+import { useAppSelector, useAppDispatch } from '../app/storeHooks'
 
 export const SignupLoginCard = () => {
 
-    const [userName, setUserName] = useState('')
+    const [usersName, setUsersName] = useState('')
     const [password, setPassword] = useState('')
+    const [usersEmail, setUsersEmail] = useState('')
 
     const users = useAppSelector((state) => state.users);
-
     const dispatch = useAppDispatch()
 
-    const handleNewUser = () => {
-        dispatch(addUser({username: userName, password: password }))
-        console.log(users)
+
+     const handleNewUser = (e: React.SubmitEvent) => {
+        e.preventDefault();
+        dispatch(addUser(newUser))
+        console.log(users.usersInfo)
     }
 
+
+    const newUser = [
+        {
+        id: 1,
+        date: new Date().toLocaleDateString(),
+        name: usersName,
+        email: usersEmail,
+        password: password,
+        hasAccount: false
+        },
+    ]
+
     useEffect(() => {
-        console.log(`This is the ${userName}`)
-    }, [userName])
+        console.log(`This is the ${usersName}`)
+    }, [usersName])
+
+    useEffect(() => {
+        console.log(`This is the ${usersEmail}`)
+    }, [usersEmail])
 
     useEffect(() => {
         console.log(`This is the ${password}`)
@@ -27,14 +44,21 @@ export const SignupLoginCard = () => {
 
     return (
         <div className="signinLoginCard">
-            <form>
+            <form onSubmit={handleNewUser}>
                 <h2>Login</h2>
                 <input  
-                    name="username"
+                    name="usersname"
                     type="text"
-                    value={userName}
+                    value={usersName}
                     placeholder="Username"
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setUsersName(e.target.value)}
+                />
+                <input 
+                    name="email"
+                    type="text"
+                    value={usersEmail}
+                    placeholder="Email"
+                    onChange={(e) => setUsersEmail(e.target.value)}
                 />
                 <input 
                     name="password"
@@ -43,7 +67,7 @@ export const SignupLoginCard = () => {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button onClick={handleNewUser}>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )
