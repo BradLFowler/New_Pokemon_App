@@ -4,7 +4,6 @@ import { useAppSelector, useAppDispatch } from '../app/storeHooks'
 
 export const SignupLoginCard = () => {
 
-    const [usersName, setUsersName] = useState('')
     const [password, setPassword] = useState('')
     const [usersEmail, setUsersEmail] = useState('')
 
@@ -21,18 +20,11 @@ export const SignupLoginCard = () => {
 
     const newUser = [
         {
-        id: 1,
-        date: new Date().toLocaleDateString(),
-        name: usersName,
         email: usersEmail,
-        password: password,
-        hasAccount: false
+        password: password
         },
     ]
 
-    useEffect(() => {
-        console.log(`This is the ${usersName}`)
-    }, [usersName])
 
     useEffect(() => {
         console.log(`This is the ${usersEmail}`)
@@ -45,14 +37,7 @@ export const SignupLoginCard = () => {
     return (
         <div className="signinLoginCard">
             <form onSubmit={handleNewUser}>
-                <h2>Login</h2>
-                <input  
-                    name="usersname"
-                    type="text"
-                    value={usersName}
-                    placeholder="Username"
-                    onChange={(e) => setUsersName(e.target.value)}
-                />
+                <h2>Sign Up</h2>
                 <input 
                     name="email"
                     type="text"
@@ -67,7 +52,8 @@ export const SignupLoginCard = () => {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit">Sign Up</button>
+                <button type="button">Login</button>
             </form>
         </div>
     )
