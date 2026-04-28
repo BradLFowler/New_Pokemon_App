@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 
-import './App.css'
+import "./App.css"
 import { MyHeader } from './components/MyHeader'
 import { SignupLoginCard } from './components/SignupLoginCard'
 
 function App() {
 
-  const getTwoRandomPokemon = (allPokemon) => {
+  const getTwoRandomPokemon = (allPokemon: []) => {
     let pokemon1 = Math.floor(Math.random() * allPokemon.length)
     let pokemon2 = Math.floor(Math.random() * allPokemon.length)
     let poke1data = allPokemon[pokemon1]
