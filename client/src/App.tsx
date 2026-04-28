@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import "./App.css"
 import { MyHeader } from './components/MyHeader'
-import { SignupLoginCard } from './components/SignupLoginCard'
+import { SignupLoginCard } from './components/signupLoginCard'
 
 function App() {
 
