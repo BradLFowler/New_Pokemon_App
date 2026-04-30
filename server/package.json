@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Pokemon app backend",
-  "main": "server.js",
+  "main": "server.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon --exec ts-node server.ts"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,7 @@
     "@types/express": "^5.0.6",
     "@types/express-jwt": "^7.4.4",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^25.6.0"
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2"
   }
 }

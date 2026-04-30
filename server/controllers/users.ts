@@ -1,6 +1,6 @@
 import mysql from 'mysql2'
-import pool from '../sql/connection'
-import handleSQLError from '../sql/error'
+import pool from '../sql/connection.ts'
+import { handleSQLError } from '../sql/error.ts'
 
 
 // Must figure out correct typing!!!!!!!!!!!!!!!!!!!!
@@ -54,7 +54,7 @@ export const deleteUserByFirstName = (req: any, res: any) => {
   })
 }
 
-module.exports = {
+export default {
   getAllUsers,
   getUserById,
   createUser,

@@ -1,18 +1,18 @@
 import express from 'express'
-import { checkJwt } from '../middleware/middleware'
-import usersController from '../controllers/users'
+import { checkJwt } from '../middleware/middleware.ts'
+import { createUser, getAllUsers, getUserById, updateUserById, deleteUserByFirstName } from '../controllers/users.ts'
 
-const router = express.Router()
+const usersRouter = express.Router()
 
 
-router.get('/', usersController.getAllUsers)
+usersRouter.get('/', getAllUsers)
 
-router.get('/:id', usersController.getUserById)
+usersRouter.get('/:id', getUserById)
 
-router.post('/', checkJwt ,usersController.createUser)
+usersRouter.post('/', checkJwt , createUser)
 
-router.put('/:id', checkJwt ,usersController.updateUserById)
+usersRouter.put('/:id', checkJwt , updateUserById)
 
-router.delete('/:first_name', checkJwt ,usersController.deleteUserByFirstName)
+usersRouter.delete('/:first_name', checkJwt ,deleteUserByFirstName)
 
-export default router
+export default usersRouter

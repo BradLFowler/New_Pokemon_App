@@ -2,8 +2,8 @@ import axios from 'axios'
 import argon2id from 'argon2'
 import jwt from 'jsonwebtoken'
 import mysql from 'mysql2'
-import pool from '../sql/connection'
-import handleSQLError from '../sql/error'
+import pool from '../sql/connection.ts'
+import { handleSQLError } from '../sql/error.ts'
 
 const domain = process.env.AUTH0_DOMAIN
 const identity = process.env.AUTH0_IDENTITY
@@ -15,7 +15,7 @@ export const signup = (req: any, res: any) => {
   const { username, password } = req.body
   let sql = "INSERT INTO usersCredentials (username, password) VALUES (?, ?)"
 
-  argon2id.hash(password).then((hash: any) => {
+    argon2id.hash(password).then((hash: any) => {
     sql = mysql.format(sql, [ username, hash ])
   
     pool.query(sql, (err: any, result: any) => {

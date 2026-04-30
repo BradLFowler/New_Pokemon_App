@@ -1,7 +1,7 @@
 import express, { json } from 'express'
-import authRouter from './routers/auth'
-import usersRouter from './routers/users'
-import { logger } from './middleware/middleware'
+import authRouter from './routers/auth.ts'
+import usersRouter from './routers/users.ts'
+import { logger } from './middleware/middleware.ts'
 import cors from 'cors'
 require('dotenv').config()
 

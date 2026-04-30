@@ -1,34 +1,22 @@
 import mysql from 'mysql2'
-require('dotenv').config()
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const host = process.env.HOST
 const user = process.env.USER
 const password = process.env.PASSWORD
-const db = process.env.DATABASE
+const database = process.env.DATABASE
 
-class Connection {
-    pool: any
-    constructor() {
-        if (!this.pool) {
-            console.log('creating mysql connection...')
-      
-            const config = {
-              connectionLimit: 100,
-              host: host,
-              user: user,
-              password: password,
-              database: db
-            }
-      
-            this.pool = mysql.createPool(config)
-      
-            return this.pool
-          }
-      
-          return this.pool
-    }
-}
 
-const instance = new Connection()
+const pool = mysql.createPool({
+    host: host,
+    user: user,
+    password: password,
+    database: database,
+    connectionLimit: 100
+})
+ 
 
-export default instance
+
+export default pool
